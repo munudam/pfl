@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Kanit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/STYLEs.css">
+    <link rel="icon" href="image/qrcode.jpg">
+    <title>Code generate [_UDM_]</title>
+</head>
+<body>
+    <header class="header">
+        <ul>
+            <li><a href="../index.html"><img id="logo" src="../image/home.png"></a></li>
+        </ul>
+    </header>
+    <div class="container">
+        <p id="guidline">Enter your text or URL</p>
+        <input type="text" placeholder="Text or URL" id="qrText">
+    
+        <div id="imgBox">
+            <img src="" id="qrImage">
+        </div>
+    
+        <button id="btn" onclick="generateQR()">Generate QR Code</button>
+        <center><p id="descrip" style="color: green;">QR Code generated successful..!</p></center>
+    </div>
+    <script>
+        let imgBox = document.getElementById("imgBox");
+        let qrImage = document.getElementById("qrImage");
+        let qrText = document.getElementById("qrText");
+
+        function generateQR(){
+            if(qrText.value.length > 0){
+                qrImage.src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+                imgBox.classList.add("show-img");
+                document.getElementById("guidline").style.display = "none";
+                document.getElementById("qrText").style.display = "none";
+                document.getElementById("btn").style.display = "none";
+                document.getElementById("descrip").style.display = "block";
+            }else{
+                qrText.classList.add('error');
+                setTimeout(()=>{
+                    qrText.classList.remove('error');
+                },1000);
+            }
+        }
+    </script>
+</body>
+</html>
